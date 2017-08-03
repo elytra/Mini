@@ -303,7 +303,7 @@ public class PatchContext {
 				}
 			}
 			if (allMatched) {
-				return new SearchResult(start, nodes, reverse);
+				return new SearchResult(k, nodes, reverse);
 			}
 		}
 		return new SearchResult(-1, nodes, reverse);
