@@ -86,7 +86,7 @@ public class PatchContext {
 		 */
 		public void jumpAfter() {
 			if (!isSuccessful()) throw new NoSuchElementException();
-			pointer = start+query.length;
+			setPointer(start+query.length);
 		}
 		
 		/**
@@ -95,7 +95,7 @@ public class PatchContext {
 		 */
 		public void jumpBefore() {
 			if (!isSuccessful()) throw new NoSuchElementException();
-			pointer = start-1;
+			setPointer(start-1);
 		}
 		
 		/**
@@ -145,6 +145,14 @@ public class PatchContext {
 			code.add(ain.clone(labels));
 			ain = ain.getNext();
 		}
+	}
+	
+	/**
+	 * @return the instruction under the current code pointer
+	 */
+	public AbstractInsnNode get() {
+		if (pointer == -1) throw new PointerNotSetException();
+		return code.get(pointer);
 	}
 	
 	public String getMethodName() {
